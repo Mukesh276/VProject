@@ -1,0 +1,56 @@
+spring:
+  application:
+    name: dassDemo
+
+#  datasource:
+#    url: jdbc:mysql://${aurora.db.host}:${aurora.db.port}/${aurora.db.schema}?encrypt=${aurora.db.encrypt}&retries=${aurora.db.retries}&retryInterval=${aurora.db.retryInterval}&useSSL=false
+#    username: ${aurora.db.username}
+#    password: ${aurora.db.password}
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    hikari:
+#      maximum-pool-size: 10
+#      connection-timeout: 30000
+
+  #aurora:
+  #  db:
+  #    host: localhost
+  #    port: 3307
+  #    username: user
+  #    password: user
+  #    schema: subscription
+  #    encrypt: false
+  #    retries: 3
+  #    retryInterval: 500
+
+  datasource:
+    url: jdbc:h2:mem:testdb  # In-memory H2 database
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+    initialize: true
+#    initialization-mode: always  # Ensure that schema.sql and data.sql are executed
+#    schema: classpath:schema.sql  # Path to schema.sql
+#    data: classpath:data.sql  # Path to data.sql
+
+  h2:
+    console:
+      enabled: true  # Enables H2 console for easy database browsing
+
+
+  jpa:
+    generate-ddl: true  # Automatically create database schema
+    hibernate:
+      dialect: org.hibernate.dialect.H2Dialect  # Use H2 dialect for Hibernate
+      ddl-auto: update #remove in prod
+      globally_quoted_identifiers: true
+    show-sql: true  # Show SQL queries in the logs
+
+http:
+  notification:
+    path: /api/notifications
+    host: "http://example.com"
+    port: 80
+
+notify:
+  client_secret: "your-client-secret-value"
+  client_id: "your-client-id-value"

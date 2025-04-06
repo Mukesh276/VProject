@@ -1,0 +1,2 @@
+----------------Docker command to set up Aurora Mysql DB---------------
+docker run -d --name aurora-mysql -e MYSQL_ROOT_PASSWORD=rootpassword -e MYSQL_USER=user -e MYSQL_PASSWORD=user -e MYSQL_DATABASE=subscription -p 3307:3306 mysql:8.0

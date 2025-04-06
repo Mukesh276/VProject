@@ -1,0 +1,225 @@
+{
+	"info": {
+		"_postman_id": "1e1ffa93-af16-45d2-8d19-565778c391cb",
+		"name": "DaaS API Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19506941"
+	},
+	"item": [
+		{
+			"name": "Process Subscription Success",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/daas/subscription/processor?subId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"daas",
+						"subscription",
+						"processor"
+					],
+					"query": [
+						{
+							"key": "subId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Process Subscription In-Progress",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/daas/subscription/processor?subId=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"daas",
+						"subscription",
+						"processor"
+					],
+					"query": [
+						{
+							"key": "subId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Process Subscription Error",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/daas/subscription/processor?subId=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"daas",
+						"subscription",
+						"processor"
+					],
+					"query": [
+						{
+							"key": "subId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Active Subscriptions",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "your-client-id",
+						"type": "text"
+					},
+					{
+						"key": "client_secret",
+						"value": "your-client-secret",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/daas/subscription/active?companyCode=ABC&client=XYZ&env=DEV",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"daas",
+						"subscription",
+						"active"
+					],
+					"query": [
+						{
+							"key": "companyCode",
+							"value": "ABC"
+						},
+						{
+							"key": "client",
+							"value": "XYZ"
+						},
+						{
+							"key": "env",
+							"value": "DEV"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Subscription Status",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "your-client-id",
+						"type": "text"
+					},
+					{
+						"key": "client_secret",
+						"value": "your-client-secret",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/daas/subscription/101/status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"daas",
+						"subscription",
+						"101",
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trigger MFTS",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/mfts-job?subscriptionId=123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"mfts-job"
+					],
+					"query": [
+						{
+							"key": "subscriptionId",
+							"value": "123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Unitrax System Tables Row Count",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"exampleKey\": \"exampleValue\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/unitrax/system-tables",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"unitrax",
+						"system-tables"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
