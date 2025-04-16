@@ -66,7 +66,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/daas/subscription/processor?subId=2",
+					"raw": "http://localhost:8080/daas/subscription/processor?subId=45",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -80,7 +80,7 @@
 					"query": [
 						{
 							"key": "subId",
-							"value": "2"
+							"value": "45"
 						}
 					]
 				}
