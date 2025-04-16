@@ -1,0 +1,170 @@
+openapi: 3.0.0
+info:
+  title: DaaS
+  version: 1.0.0
+  description: Provides details for DaaS API's
+servers:
+  - url: https://api.b2b.lticanada.com/unitrax-api/1.0.0
+components:
+  schemas:
+    subscriptionActiveStatus:
+      type: object
+      properties:
+        subscriptionId:
+          type: number
+          description: subscriptionId
+        subscriptionContact:
+          type: string
+          description: subscriptionContact
+        startDateTime:
+          type: string
+          description: startDateTime
+        endDateTime:
+          type: string
+          description: endDateTime
+        status:
+          type: string
+          description: status
+  securitySchemes:
+    client-id-required:
+      type: apiKey
+      in: header
+      name: client_id
+    client-secret-required:
+      type: apiKey
+      in: header
+      name: client_secret
+paths:
+  /daas/subscription/processor:
+    post:
+      summary: daasProcessSubscription
+      description: This is used to process a subscription
+      parameters:
+        - name: subId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example: 
+                $ref: 'examples/subscriptionResponse.json'
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+        '503':
+          description: Service Unavailable
+  /daas/subscription/active:
+    get:
+      summary: Get active subscriptions
+      description: To get the active subscriptions
+      security:
+        - client-id-required: []
+        - client-secret-required: []
+      parameters:
+        - name: companyCode
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: client
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: env
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/subscriptionActiveStatus'
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+        '503':
+          description: Service Unavailable
+  /daas/subscription/{subscriptionId}/status:
+    get:
+      summary: daasViewSubscriptionStatus
+      description: This is used to retrieve and view the subscription status
+      security:
+        - client-id-required: []
+        - client-secret-required: []
+      parameters:
+        - name: subscriptionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              example:
+                SubscriptionId: "101"
+                Status: "COMPLETED"
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+        '503':
+          description: Service Unavailable
+  /mfts-job:
+    post:
+      summary: Trigger MFTS
+      description: This is used to trigger MFTS API call
+      parameters:
+        - name: subscriptionId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example: 
+                $ref: 'examples/callmftsResponse.json'
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+        '503':
+          description: Service Unavailable
+  /unitrax/system-tables:
+    post:
+      summary: unitrax system-tables
+      description: This is used to facilitate the retrieval of row counts from all Unitrax partitions system-tables.
+      requestBody:
+        content:
+          application/json:
+            example: 
+              $ref: 'examples/recondataRequest.json'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example: 
+                $ref: 'examples/recondataResponse.json'
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+        '503':
+          description: Service Unavailable
